@@ -1,6 +1,23 @@
 <template>
-  <div class="home pa-6">
-    <h1>Todo page</h1>
+  <div class="home">
+    <v-list
+      flat
+      three-line
+    >
+        <v-list-item>
+          <template v-slot:default="{ active }">
+            <v-list-item-action>
+              <v-checkbox :input-value="active"></v-checkbox>
+            </v-list-item-action>
+
+            <v-list-item-content>
+              <v-list-item-title>Notifications</v-list-item-title>
+              <v-list-item-subtitle></v-list-item-subtitle>
+            </v-list-item-content>
+          </template>
+        </v-list-item>
+
+    </v-list>
   </div>
 </template>
 
