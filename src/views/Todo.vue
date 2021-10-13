@@ -1,5 +1,16 @@
 <template>
   <div class="home">
+    <v-text-field
+      v-model="newTaskTitle"
+      @click:append="addTask()"
+      @keyup.enter="addTask()"
+      class="pa-3"
+      outlined
+      hide-details
+      clearable
+      label="Add Task"
+      append-icon="mdi-plus"
+    ></v-text-field>
     <v-list flat three-line class="pt-0">
       <div v-for="task in tasks" :key="task.id">
         <v-list-item
@@ -17,9 +28,7 @@
               >
             </v-list-item-content>
             <v-list-item-action class="pt-3">
-              <v-btn 
-              @click.stop="deleteTask(task.id)"
-              icon>
+              <v-btn @click.stop="deleteTask(task.id)" icon>
                 <v-icon color="primary lighten-1">mdi-delete</v-icon>
               </v-btn>
             </v-list-item-action>
@@ -36,6 +45,7 @@ export default {
   name: "Home",
   data() {
     return {
+      newTaskTitle: "",
       tasks: [
         { id: 1, title: "Wake Up", done: false },
         { id: 2, title: "Get Groceries", done: false },
@@ -44,13 +54,22 @@ export default {
     };
   },
   methods: {
+    addTask() {
+      let newTask = {
+        id: Date.now(),
+        title: this.newTaskTitle,
+        done: false,
+      };
+      this.tasks.push(newTask);
+      this.newTaskTitle = ''
+    },
     doneTask(id) {
       let task = this.tasks.filter((task) => task.id === id)[0];
       task.done = !task.done;
     },
-    deleteTask(id){
-      this.tasks = this.tasks.filter(task => task.id !== id)
-    }
+    deleteTask(id) {
+      this.tasks = this.tasks.filter((task) => task.id !== id);
+    },
   },
 };
 </script>
