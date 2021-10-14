@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
@@ -13,8 +13,8 @@ export default new Vuex.Store({
     ],
     snackbar: {
       show: false,
-      text: 'text'
-    }
+      text: "text",
+    },
   },
   mutations: {
     // Methods that change state data (setters)
@@ -30,29 +30,37 @@ export default new Vuex.Store({
       let task = state.tasks.filter((task) => task.id === id)[0];
       task.done = !task.done;
     },
-    deleteTask(state, id){
+    deleteTask(state, id) {
       state.tasks = state.tasks.filter((task) => task.id !== id);
     },
-    showSnackbar(state, text){
-      state.snackbar.show = true
-      state.snackbar.text = text
-    }
+    showSnackbar(state, text) {
+      let timeout = 0;
+      if (state.snackbar.show) {
+        // Hide snackbar if its already showing
+        timeout = 300; //3ms
+        state.snackbar.show = false;
+      }
+      setTimeout(() => {
+        state.snackbar.show = true;
+        state.snackbar.text = text;
+      }, timeout);
+    },
   },
   actions: {
     // API calls (dispatching)
-    addTask({ commit }, newTaskTitle){
-      commit('addTask', newTaskTitle)
-      commit('showSnackbar', 'Task Added!')
+    addTask({ commit }, newTaskTitle) {
+      commit("addTask", newTaskTitle);
+      commit("showSnackbar", "Task Added!");
     },
-    deleteTask({commit}, id){
-      commit('deleteTask', id)
-      commit('showSnackbar', 'Task Deleted!')
-    }
+    deleteTask({ commit }, id) {
+      commit("deleteTask", id);
+      commit("showSnackbar", "Task Deleted!");
+    },
   },
   getters: {
     // Get data from state
   },
   modules: {
     // Allows to break Vuex into multiple modules
-  }
-})
+  },
+});
