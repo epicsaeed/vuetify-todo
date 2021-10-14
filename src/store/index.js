@@ -13,7 +13,7 @@ export default new Vuex.Store({
     ],
     snackbar: {
       show: false,
-      text: ''
+      text: 'text'
     }
   },
   mutations: {
@@ -41,6 +41,10 @@ export default new Vuex.Store({
     // API calls (dispatching)
     addTask({ commit }, newTaskTitle){
       commit('addTask', newTaskTitle)
+      commit('showSnackbar')
+    },
+    deleteTask({commit}, id){
+      commit('deleteTask', id)
       commit('showSnackbar')
     }
   },
