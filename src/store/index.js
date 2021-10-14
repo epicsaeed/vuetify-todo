@@ -6,6 +6,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     // Store global data
+    tasks: [
+      { id: 1, title: "Wake Up", done: false },
+      { id: 2, title: "Get Groceries", done: false },
+      { id: 3, title: "Breakfast", done: false },
+    ]
   },
   mutations: {
     // Methods that change state data (setters)
