@@ -59,12 +59,11 @@ export default {
       this.$store.commit('addTask', this.newTaskTitle)
       this.newTaskTitle = ''
     },
-    doneTask(id) {
-      let task = this.tasks.filter((task) => task.id === id)[0];
-      task.done = !task.done;
+    doneTask(id){
+      this.$store.commit('doneTask', id)
     },
     deleteTask(id) {
-      this.tasks = this.tasks.filter((task) => task.id !== id);
+      this.$store.commit('deleteTask', id)
     },
   },
 };
