@@ -12,13 +12,8 @@
 <script>
 import Task from './Task.vue'
 export default {
-
   components: {
       'task': Task
   }
 }
 </script>
-
-<style>
-
-</style>
