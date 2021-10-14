@@ -10,7 +10,11 @@ export default new Vuex.Store({
       { id: 1, title: "Wake Up", done: false },
       { id: 2, title: "Get Groceries", done: false },
       { id: 3, title: "Breakfast", done: false },
-    ]
+    ],
+    snackbar: {
+      show: false,
+      text: ''
+    }
   },
   mutations: {
     // Methods that change state data (setters)
