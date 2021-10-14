@@ -2,8 +2,8 @@
   <div class="home">
     <v-text-field
       v-model="newTaskTitle"
-      @click:append="addTask()"
-      @keyup.enter="addTask()"
+      @click:append="addTask"
+      @keyup.enter="addTask"
       class="pa-3"
       outlined
       hide-details
@@ -52,18 +52,12 @@ export default {
   data() {
     return {
       newTaskTitle: "",
-      
     };
   },
   methods: {
-    addTask() {
-      let newTask = {
-        id: Date.now(),
-        title: this.newTaskTitle,
-        done: false,
-      };
-      this.tasks.push(newTask);
-      this.newTaskTitle = "";
+    addTask(){
+      this.$store.commit('addTask', this.newTaskTitle)
+      this.newTaskTitle = ''
     },
     doneTask(id) {
       let task = this.tasks.filter((task) => task.id === id)[0];

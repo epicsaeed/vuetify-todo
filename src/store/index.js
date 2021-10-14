@@ -14,6 +14,14 @@ export default new Vuex.Store({
   },
   mutations: {
     // Methods that change state data (setters)
+    addTask(state, newTaskTitle) {
+      let newTask = {
+        id: Date.now(),
+        title: newTaskTitle,
+        done: false,
+      };
+      state.tasks.push(newTask);
+    },
   },
   actions: {
     // API calls (dispatching)
