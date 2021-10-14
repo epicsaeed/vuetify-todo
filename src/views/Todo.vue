@@ -1,16 +1,6 @@
 <template>
   <div class="home">
-    <v-text-field
-      v-model="newTaskTitle"
-      @click:append="addTask"
-      @keyup.enter="addTask"
-      class="pa-3"
-      outlined
-      hide-details
-      clearable
-      label="Add Task"
-      append-icon="mdi-plus"
-    ></v-text-field>
+    <field-add-task />
     <v-list v-if="$store.state.tasks.length" flat class="pt-0">
       <div v-for="task in $store.state.tasks" :key="task.id">
         <v-list-item
@@ -47,33 +37,28 @@
 </template>
 
 <script>
+import FieldAddTask from "../components/Todo/FieldAddTask.vue";
+
 export default {
-  name: "Home",
-  data() {
-    return {
-      newTaskTitle: "",
-    };
-  },
   methods: {
-    addTask(){
-      this.$store.commit('addTask', this.newTaskTitle)
-      this.newTaskTitle = ''
-    },
-    doneTask(id){
-      this.$store.commit('doneTask', id)
+    doneTask(id) {
+      this.$store.commit("doneTask", id);
     },
     deleteTask(id) {
-      this.$store.commit('deleteTask', id)
+      this.$store.commit("deleteTask", id);
     },
+  },
+  components: {
+    "field-add-task": FieldAddTask,
   },
 };
 </script>
 
 <style lang="sass" scoped>
-  .no-tasks
-    position: absolute
-    left: 50%
-    top: 50%
-    transform: translate(-50%, -50%)
-    opacity: 0.5
+.no-tasks
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)
+  opacity: 0.5
 </style>
