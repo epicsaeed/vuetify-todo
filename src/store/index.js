@@ -55,12 +55,16 @@ export default new Vuex.Store({
     // API calls (dispatching)
     addTask({ commit }, newTaskTitle) {
       commit("addTask", newTaskTitle);
-      commit("showSnackbar", "Task Added!");
+      commit("showSnackbar", "Task Added!")
     },
     deleteTask({ commit }, id) {
       commit("deleteTask", id);
-      commit("showSnackbar", "Task Deleted!");
+      commit("showSnackbar", "Task Deleted!")
     },
+    updateTaskTitle({ commit}, payload){
+      commit('updateTaskTitle', payload)
+      commit('showSnackbar', 'Task Updated!')
+    }
   },
   getters: {
     // Get data from state

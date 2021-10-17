@@ -1,16 +1,13 @@
 <template>
   <v-dialog :value="true" persistent max-width="290">
-    <template v-slot:activator="{ on, attrs }"> </template>
+    <!-- <template v-slot:activator="{ on, attrs }"> </template> -->
     <v-card>
       <v-card-title class="text-h5">
         Edit Task?
       </v-card-title>
       <v-card-text>
         Edit the title of this task
-        <v-text-field 
-        v-model="taskTitle"
-        @keyup.enter="saveTask"
-        />
+        <v-text-field v-model="taskTitle" @keyup.enter="saveTask" />
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -19,6 +16,7 @@
         </v-btn>
         <v-btn
           color="red darken-1"
+          :disabled="taskTitleInvalid"
           text
           @click="saveTask"
         >
@@ -34,22 +32,29 @@ export default {
   props: ["task"],
   data() {
     return {
-      taskTitle: null
-    }
+      taskTitle: null,
+    };
   },
-  mounted(){
-    this.taskTitle = this.task.title
+  mounted() {
+    this.taskTitle = this.task.title;
   },
-  methods:{
-    saveTask(){
-      let payload = {
-        id: this.task.id,
-        title: this.taskTitle
+  computed: {
+    taskTitleInvalid() {
+      return !this.taskTitle || this.task.title === this.taskTitle;
+    },
+  },
+  methods: {
+    saveTask() {
+      if (!this.taskTitleInvalid) {
+        let payload = {
+          id: this.task.id,
+          title: this.taskTitle,
+        };
+        this.$store.dispatch("updateTaskTitle", payload);
+        this.$emit("closeDialog");
       }
-      this.$store.commit('updateTaskTitle', payload)
-      this.$emit('closeDialog')
-    }
-  }
+    },
+  },
 };
 </script>
 
