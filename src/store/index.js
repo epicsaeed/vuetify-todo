@@ -15,6 +15,7 @@ export default new Vuex.Store({
       show: false,
       text: "text",
     },
+    search: null
   },
   mutations: {
     // Methods that change state data (setters)
@@ -54,6 +55,9 @@ export default new Vuex.Store({
         state.snackbar.text = text;
       }, timeout);
     },
+    setSearch(state, value){
+      state.search = value
+    }
   },
   actions: {
     // API calls (dispatching)

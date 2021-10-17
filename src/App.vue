@@ -14,6 +14,7 @@
 
       <v-divider></v-divider>
 
+      <!-- Side bar navigation -->
       <v-list dense nav>
         <v-list-item v-for="item in items" :key="item.title" :to="item.to">
           <v-list-item-icon>
@@ -27,6 +28,7 @@
       </v-list>
     </v-navigation-drawer>
 
+    <!-- Header background -->
     <v-app-bar app color="primary" dark prominent src="headerImage.png">
       <template v-slot:img="{ props }">
         <v-img
@@ -35,13 +37,17 @@
         ></v-img>
       </template>
 
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-
-      <v-app-bar-title>TODO</v-app-bar-title>
-
-      <v-spacer></v-spacer>
-
-      <search-bar />
+      <v-container class="px-1">
+        <!-- Header Items -->
+        <v-row>
+          <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-spacer></v-spacer>
+          <search-bar />
+        </v-row>
+        <v-row>
+          <v-app-bar-title class="ml-4 header-title">To Do List</v-app-bar-title>
+        </v-row>
+      </v-container>
     </v-app-bar>
 
     <v-main>
@@ -69,3 +75,9 @@ export default {
   },
 };
 </script>
+
+<style lang="sass">
+  .header-title
+    .v-app-bar-title__content
+      width: 100% !important
+</style>

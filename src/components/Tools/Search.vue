@@ -1,10 +1,12 @@
 <template>
+  <!-- The usage of :value here is sent with the commit -->
   <v-text-field
-    v-model="search"
+    :value="$store.state.search"
+    @input="$store.commit('setSearch', $event)"
     @focus="searchClosed = false"
     @blur="searchClosed = true"
     class="mt-1 expanding-search"
-    :class="{ 'closed' : searchClosed && !search }"
+    :class="{ 'closed' : searchClosed && !$store.state.search }"
     placeholder="Search"
     filled
     dense
@@ -19,7 +21,6 @@ export default {
   data() {
     return {
       searchClosed: true,
-      search: null
     };
   },
 };
@@ -27,6 +28,7 @@ export default {
 
 <style lang="sass">
 .expanding-search
+    max-width: 80% !important
     transition: max-width 0.4s
     .v-input__slot
         cursor: pointer !important
