@@ -27,13 +27,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      app
-      color="primary"
-      dark
-      prominent
-      src="headerImage.png"
-    >
+    <v-app-bar app color="primary" dark prominent src="headerImage.png">
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
@@ -47,28 +41,19 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+      <search-bar />
     </v-app-bar>
 
     <v-main>
       <router-view></router-view>
-      <snackbar/>
+      <snackbar />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Snackbar from './components/Snackbar.vue'
+import Snackbar from "./components/Snackbar.vue";
+import Search from "./components/Tools/Search.vue";
 
 export default {
   data: () => ({
@@ -79,7 +64,8 @@ export default {
     ],
   }),
   components: {
-    'snackbar': Snackbar
-  }
+    snackbar: Snackbar,
+    "search-bar": Search,
+  },
 };
 </script>
