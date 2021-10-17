@@ -15,7 +15,7 @@ export default new Vuex.Store({
       show: false,
       text: "text",
     },
-    search: null
+    search: null,
   },
   mutations: {
     // Methods that change state data (setters)
@@ -41,7 +41,7 @@ export default new Vuex.Store({
     },
     updateTaskDueDate(state, payload) {
       let task = state.tasks.filter((task) => task.id === payload.id)[0];
-      task.dueDate = payload.dueDate
+      task.dueDate = payload.dueDate;
     },
     showSnackbar(state, text) {
       let timeout = 0;
@@ -55,9 +55,9 @@ export default new Vuex.Store({
         state.snackbar.text = text;
       }, timeout);
     },
-    setSearch(state, value){
-      state.search = value
-    }
+    setSearch(state, value) {
+      state.search = value;
+    },
   },
   actions: {
     // API calls (dispatching)
@@ -79,7 +79,14 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    // Get data from state
+    // Get data from state & modifies it & returns it
+    tasksFiltered(state) {
+      if (!state.search) {
+        return state.tasks;
+      } else {
+        return state.tasks.filter((task) => task.title.toLowerCase().includes(state.search.toLowerCase()));
+      }
+    },
   },
   modules: {
     // Allows to break Vuex into multiple modules
