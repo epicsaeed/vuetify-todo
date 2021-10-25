@@ -1,6 +1,10 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app>
+    <v-navigation-drawer
+    v-model="drawer"
+    :mobile-breakpoint="768"
+    app
+    >
       <v-img
       class="pa-4 pt-7"
         src="/headerImage.png"
@@ -46,7 +50,7 @@
         ></v-img>
       </template>
 
-      <v-container class="px-1">
+      <v-container class="px-1 header-container">
         <!-- Header Items -->
         <v-row>
           <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
@@ -96,5 +100,7 @@ export default {
 .header-title
   .v-app-bar-title__content
     width: 100% !important
+.header-container
+  max-width: none !important
 </style>
 
