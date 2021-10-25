@@ -1,19 +1,21 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app>
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6">
-            To Do List
-          </v-list-item-title>
-          <v-list-item-subtitle>
-            comprehensive to do list
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
+      <v-img
+      class="pa-4 pt-7"
+        src="/headerImage.png"
+        height="170"
+        gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+      >
+    <v-avatar size="70" class="mb-2">
+      <img
+        src="https://shortest.link/1tGw"
+        alt="avatar"
+      >
+    </v-avatar>
+    <div class="white--text text-subtitle-1 font-weight-bold">Saeed Alnuaimi</div>
+    <div class="white--text text-subtitle-2">saeed.maatouq</div>
+    </v-img>
       <!-- Side bar navigation -->
       <v-list dense nav>
         <v-list-item v-for="item in items" :key="item.title" :to="item.to">
@@ -29,7 +31,14 @@
     </v-navigation-drawer>
 
     <!-- Header background -->
-    <v-app-bar app color="primary" dark prominent height="170" src="headerImage.png">
+    <v-app-bar
+      app
+      color="primary"
+      dark
+      prominent
+      height="170"
+      src="headerImage.png"
+    >
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
@@ -45,10 +54,12 @@
           <search-bar />
         </v-row>
         <v-row>
-          <v-app-bar-title class="ml-4 header-title text-h4">To Do List</v-app-bar-title>
+          <v-app-bar-title class="ml-4 header-title text-h4"
+            >To Do List</v-app-bar-title
+          >
         </v-row>
         <v-row>
-          <live-date-time/>
+          <live-date-time />
         </v-row>
       </v-container>
     </v-app-bar>
@@ -74,15 +85,16 @@ export default {
     ],
   }),
   components: {
-    "snackbar": Snackbar,
+    snackbar: Snackbar,
     "search-bar": Search,
-    "live-date-time": LiveDate
+    "live-date-time": LiveDate,
   },
 };
 </script>
 
 <style lang="sass">
-  .header-title
-    .v-app-bar-title__content
-      width: 100% !important
+.header-title
+  .v-app-bar-title__content
+    width: 100% !important
 </style>
+
