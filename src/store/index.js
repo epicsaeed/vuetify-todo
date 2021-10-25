@@ -16,6 +16,7 @@ export default new Vuex.Store({
       text: "text",
     },
     search: null,
+    appTitle: process.env.VUE_APP_TITLE
   },
   mutations: {
     // Methods that change state data (setters)

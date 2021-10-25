@@ -59,7 +59,8 @@
         </v-row>
         <v-row>
           <v-app-bar-title class="ml-4 header-title text-h4"
-            >To Do List</v-app-bar-title
+            >{{$store.state.appTitle}}
+            </v-app-bar-title
           >
         </v-row>
         <v-row>
