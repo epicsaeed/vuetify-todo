@@ -16,7 +16,8 @@ export default new Vuex.Store({
       text: "text",
     },
     search: null,
-    appTitle: process.env.VUE_APP_TITLE
+    appTitle: process.env.VUE_APP_TITLE,
+    sorting: false
   },
   mutations: {
     // Methods that change state data (setters)
@@ -44,6 +45,9 @@ export default new Vuex.Store({
       let task = state.tasks.filter((task) => task.id === payload.id)[0];
       task.dueDate = payload.dueDate;
     },
+    setTasks(state, tasks){
+      state.tasks = tasks
+    },
     showSnackbar(state, text) {
       let timeout = 0;
       if (state.snackbar.show) {
@@ -59,6 +63,9 @@ export default new Vuex.Store({
     setSearch(state, value) {
       state.search = value;
     },
+    toggleSorting(state){
+      state.sorting = !state.sorting;
+    }
   },
   actions: {
     // API calls (dispatching)

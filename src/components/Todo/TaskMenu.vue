@@ -50,7 +50,7 @@ export default {
     dialogs: {
       delete: false,
       edit: false,
-      date: false
+      date: false,
     },
     items: [
       {
@@ -64,7 +64,7 @@ export default {
         title: "Due Date",
         icon: "mdi-calendar",
         click() {
-          this.dialogs.date = true
+          this.dialogs.date = true;
         },
       },
       {
@@ -72,6 +72,13 @@ export default {
         icon: "mdi-delete",
         click() {
           this.dialogs.delete = true;
+        },
+      },
+      {
+        title: "Sort",
+        icon: "mdi-drag-horizontal-variant",
+        click() {
+          this.$store.commit('toggleSorting');
         },
       },
     ],
