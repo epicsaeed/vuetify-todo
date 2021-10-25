@@ -29,7 +29,7 @@
     </v-navigation-drawer>
 
     <!-- Header background -->
-    <v-app-bar app color="primary" dark prominent src="headerImage.png">
+    <v-app-bar app color="primary" dark prominent height="170" src="headerImage.png">
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
@@ -45,7 +45,10 @@
           <search-bar />
         </v-row>
         <v-row>
-          <v-app-bar-title class="ml-4 header-title">To Do List</v-app-bar-title>
+          <v-app-bar-title class="ml-4 header-title text-h4">To Do List</v-app-bar-title>
+        </v-row>
+        <v-row>
+          <live-date-time/>
         </v-row>
       </v-container>
     </v-app-bar>
@@ -60,6 +63,7 @@
 <script>
 import Snackbar from "./components/Snackbar.vue";
 import Search from "./components/Tools/Search.vue";
+import LiveDate from "./components/Tools/LiveDate.vue";
 
 export default {
   data: () => ({
@@ -70,8 +74,9 @@ export default {
     ],
   }),
   components: {
-    snackbar: Snackbar,
+    "snackbar": Snackbar,
     "search-bar": Search,
+    "live-date-time": LiveDate
   },
 };
 </script>
