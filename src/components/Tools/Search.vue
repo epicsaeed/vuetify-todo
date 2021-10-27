@@ -6,6 +6,7 @@
     @focus="searchClosed = false"
     @blur="searchClosed = true"
     class="mt-1 expanding-search"
+    :disabled="$store.state.sorting"
     :class="{ 'closed' : searchClosed && !$store.state.search }"
     placeholder="Search"
     filled
