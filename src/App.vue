@@ -40,13 +40,13 @@
       color="primary"
       dark
       prominent
-      height="170"
+      :height="$route.path === '/' ? 230 : 170"
       src="headerImage.png"
     >
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+          gradient="to top right, rgba(19,84,122,.9), rgba(128,208,199,.8)"
         ></v-img>
       </template>
 
@@ -66,6 +66,9 @@
         <v-row>
           <live-date-time />
         </v-row>
+        <v-row v-if="this.$route.name == 'Todo'">
+              <field-add-task />
+        </v-row>
       </v-container>
     </v-app-bar>
 
@@ -80,6 +83,7 @@
 import Snackbar from "./components/Snackbar.vue";
 import Search from "./components/Tools/Search.vue";
 import LiveDate from "./components/Tools/LiveDate.vue";
+import FieldAddTask from './components/Todo/FieldAddTask.vue';
 
 export default {
   data: () => ({
@@ -91,11 +95,12 @@ export default {
   }),
   mounted(){
     this.$store.dispatch('getTasks')
-  },
+},
   components: {
     snackbar: Snackbar,
     "search-bar": Search,
     "live-date-time": LiveDate,
+    "field-add-task": FieldAddTask,
   },
 };
 </script>
